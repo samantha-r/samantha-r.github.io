@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Webpage Experiment 1</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: linen;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Style the side navigation */
+.sidenav {
+  height: 100%;
+  width: 200px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: DarkSeaGreen;
+  overflow-x: hidden;
+}
+
+
+/* Side navigation links */
+.sidenav a {
+  color: white;
+  padding: 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color on hover */
+.sidenav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Style the content */
+.content {
+  margin-left: 200px;
+  padding-left: 20px;
+}
+</style>
+</head>
+<body>
+
+<div class="sidenav">
+  <a href="http://www.google.com">Google</a>
+  <a href="https://aqua.org">Baltimore National Aquarium</a>
+  <a href="https://nationalphilharmonic.org">National Philharmonic Orchestra</a>
+</div>
+
+<div class="content">
+  <h1>Hi, my name is Samantha</h1>
+  <p>Test your mental addition skills here!</p>
+  <img src="latke.jpg" alt="Some Latkes" style="width:272px; height:204px">
+  <p id="demo"></p>
+  <button type="button" onclick="generateQuestion()">Click for Question</button>
+  <button type="button" onclick="answerQuestion()">Click for Answer</button>
+
+  <script>
+    var c;
+  function generateQuestion(){
+    var a = Math.floor(Math.random() * 101);
+    var b = Math.floor(Math.random() * 101);
+    var question = (a + " + " + b + " ="); 
+    document.getElementById("demo").innerHTML = question; 
+    c = a + b;
+  }
+  function answerQuestion() {
+    document.getElementById("demo").innerHTML = c;
+  }
+  </script>
+
+</div>
+
+</body>
+</html>
