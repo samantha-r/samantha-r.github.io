@@ -52,7 +52,7 @@ body {
 <body>
 
 <div class="sidenav">
-  <a href="http://www.google.com">Google</a>
+  <a href="">Every Sidebar Needs Some Links</a>
   <a href="https://aqua.org">Baltimore National Aquarium</a>
   <a href="https://nationalphilharmonic.org">National Philharmonic Orchestra</a>
 </div>
@@ -62,21 +62,59 @@ body {
   <p>Test your mental addition skills here!</p>
   <img src="latke.jpg" alt="Some Latkes" style="width:272px; height:204px">
   <p id="demo"></p>
-  <button type="button" onclick="generateQuestion()">Click for Question</button>
-  <button type="button" onclick="answerQuestion()">Click for Answer</button>
+
+  <button type="button" onclick="generateQuestion()">Click for Question</button>  
+  
+  <form><br>Your Answer: <input type="text" id="studentanswer"/><br><br>
+  <input type="button" value="Submit" onclick="evaluateAnswer()"/><br>
+  </form>
+  <p id="nextline"></p>
+  <button type="button" onclick="answerQuestion()">Click to Reveal Answer</button>
+  <p id="answerhere"></p>
+  <p id="streak"></p>
+  <p id="levelup"></p>
 
   <script>
-    var c;
+  var counter = 0;  
+  var c = 0;
+
   function generateQuestion(){
-    var a = Math.floor(Math.random() * 101);
-    var b = Math.floor(Math.random() * 101);
-    var question = (a + " + " + b + " ="); 
-    document.getElementById("demo").innerHTML = question; 
-    c = a + b;
+    if (counter < 10) {
+      var a = Math.floor(Math.random() * 101);
+      var b = Math.floor(Math.random() * 101);
+    }
+    else {
+      var a = Math.floor(Math.random() * 1001);
+      var b = Math.floor(Math.random() * 1001);
+    }
+      var question = (a + " + " + b + " =");
+      c = a + b; 
+      document.getElementById("demo").innerHTML = question; 
   }
+
+  function evaluateAnswer(){
+    if (c == studentanswer.value){
+      counter = counter + 1;
+      if (counter == 10){
+        document.getElementById("levelup").innerHTML = ("Entering round TWO!");
+      } 
+      if (counter == 20){
+        document.getElementById("levelup").innerHTML = ("Great Job, YOU WIN!");
+      }
+      document.getElementById("nextline").innerHTML = ("You entered " + studentanswer.value + ", CORRECT!!");      
+      document.getElementById("streak").innerHTML = ("Your winning streak:" + counter + " questions.  Keep trying!");
+    }
+    else {
+      counter = 0;
+      document.getElementById("nextline").innerHTML = ("You entered " + studentanswer.value + ", that is incorrect.");
+      document.getElementById("streak").innerHTML = ("Your winning streak:" + counter + " questions.  Keep trying!");
+    }
+  }  
+
   function answerQuestion() {
-    document.getElementById("demo").innerHTML = c;
+    document.getElementById("answerhere").innerHTML = c;
   }
+
   </script>
 
 </div>
